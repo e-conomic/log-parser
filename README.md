@@ -3,7 +3,7 @@
 Parse a log stream that contains JSON, error stacks or simple messages
 
 ```
-npm install e-conomic/log-parser
+npm install log-parser
 ```
 
 ## Usage
