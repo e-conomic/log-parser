@@ -32,4 +32,28 @@ tape('parses multiple messages', function(t) {
   parse.write(JSON.stringify(data[2])+'\n')
   parse.write(data[3]+'\n')
   parse.write(data[4]+'\n')
+  parse.end()
+})
+
+tape('single error', function(t) {
+  var parse = parser({wait:10})
+
+  parse.on('stack', function() {
+    t.ok(true, 'had stack')
+    t.end()
+  })
+
+  parse.write(new Error('lol').stack+'\n')
+})
+
+tape('single error like message', function(t) {
+  var parse = parser()
+
+  parse.on('message', function(message) {
+    t.same(message, 'error: lol', 'had message')
+    t.end()
+  })
+
+  parse.write('error: lol')
+  parse.end()
 })

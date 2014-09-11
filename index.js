@@ -1,6 +1,8 @@
 var split = require('split2')
 
-module.exports = function() {
+module.exports = function(opts) {
+  if (!opts) opts = {}
+
   var json = function(data) {
     try {
       data = JSON.parse(data)
@@ -18,12 +20,23 @@ module.exports = function() {
 
   var reset = function() {
     error = errorish = false
-    buffer = ''
+    buffer = prevBuffer = ''
   }
 
-  var parser = split()
+  var timeout
+  var wait = function() {
+    var prevBuffer = buffer
+    var ms = opts.wait || 1000
 
-  parser.on('data', function(data) {
+    var check = function() {
+      if (prevBuffer === buffer && buffer) ondata('')
+    }
+
+    clearTimeout(timeout)
+    timeout = setTimeout(check, ms)
+  }
+
+  var ondata = function(data) {
     var ch = data[0]
     if (ch === '{' || ch === '[' || ch === '"') {
       if (json(data)) return
@@ -32,7 +45,7 @@ module.exports = function() {
     if (errorish && /^\s*at\s/.test(data)) {
       error = true
       buffer += data+'\n'
-      return
+      return wait()
     }
 
     if (errorish && error) {
@@ -49,11 +62,20 @@ module.exports = function() {
     if (/error:/i.test(data)) {
       errorish = true
       buffer = data+'\n'
-      return
+      return wait()
     }
 
-    parser.emit('message', data)
-  })
+    if (data) parser.emit('message', data)
+  }
 
+  var onclose = function() {
+    ondata('')
+    clearTimeout(timeout)
+  }
+
+  var parser = split()
+  parser.on('data', ondata)
+  parser.on('end', onclose)
+  parser.on('close', onclose)
   return parser
 }
