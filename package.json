@@ -1,6 +1,7 @@
 {
   "name": "log-parser",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "private": true,
   "description": "Parser for our log stream",
   "main": "index.js",
   "dependencies": {
