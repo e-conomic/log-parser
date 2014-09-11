@@ -6,6 +6,8 @@ Parse a log stream that contains JSON, error stacks or simple messages
 npm install log-parser
 ```
 
+[![build status](http://img.shields.io/travis/e-conomic/log-parser.svg?style=flat)](http://travis-ci.org/e-conomic/log-parser)
+
 ## Usage
 
 ``` js
