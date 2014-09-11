@@ -1,6 +1,8 @@
 # log-parser
 
-Parse a log stream that contains JSON, error stacks or simple messages
+A log stream (e.g stdout) often contains different kinds of stuff. JSON, errors stacks, and just simple messages.
+
+log-parser tries to make sense of this and split them up in a way that makes it easier to use.
 
 ```
 npm install log-parser
