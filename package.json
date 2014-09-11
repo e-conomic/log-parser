@@ -1,8 +1,7 @@
 {
   "name": "log-parser",
   "version": "1.1.0",
-  "private": true,
-  "description": "Parser for our log stream",
+  "description": "Parse a log stream that contains JSON, error stacks or simple messages",
   "main": "index.js",
   "dependencies": {
     "split2": "^0.2.1"
@@ -17,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/e-conomic/log-parser"
   },
-  "author": "Mathias Buus",
+  "author": "e-conomic",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/e-conomic/log-parser/issues"

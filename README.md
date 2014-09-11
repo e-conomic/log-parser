@@ -1,6 +1,6 @@
 # log-parser
 
-Parser for our log stream
+Parse a log stream that contains JSON, error stacks or simple messages
 
 ```
 npm install e-conomic/log-parser
@@ -29,3 +29,7 @@ parse
     console.log('stack:', stack)
   })
 ```
+
+## License
+
+MIT
