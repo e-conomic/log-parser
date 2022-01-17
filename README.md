@@ -1,3 +1,8 @@
+Archived
+======
+Tech Leads: Repository archived due to inactivity in more than 6 months.
+Please remember to add a CODEOWNERS file to the root of the repository when unarchiving.
+
 # log-parser
 
 A log stream (e.g stdout) often contains different kinds of stuff. JSON, errors stacks, and just simple messages.
